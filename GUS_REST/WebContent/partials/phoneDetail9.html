@@ -1,0 +1,99 @@
+<img ng-src="{{phone.images[0]}}" class="phone">
+
+<h1>{{phone.name}}</h1>
+
+<p>{{phone.description}}</p>
+
+<ul class="phone-thumbs">
+  <li ng-repeat="img in phone.images">
+    <img ng-src="{{img}}">
+  </li>
+</ul>
+
+<ul class="specs">
+  <li>
+    <fieldset><legend>Availability and Networks</legend>
+	    <ul>
+	      <li ng-repeat="availability in phone.availability">{{availability}}</li>
+	    </ul>
+    </fieldset> 
+  </li>
+  
+  <li>
+    <fieldset><legend>Battery</legend>
+	    <table>
+	      <tr><td>Type </td><td> {{phone.battery.type}}</td></tr>
+	      <tr><td>Talk Time </td><td> {{phone.battery.talkTime}}</td></tr>
+	      <tr><td>Standby time (max) </td><td> {{phone.battery.standbyTime}}</td></tr>
+	    </table>
+    </fieldset> 
+  </li>
+  <li>
+  	<fieldset><legend>Storage and Memory</legend>
+	    <table>
+		    <tr><td>RAM </td><td> {{phone.storage.ram}}</td></tr>
+	      	<tr><td>Internal Storage</td><td>{{phone.storage.flash}}</td></tr>
+	    </table>
+    </fieldset> 
+  </li>
+  <li>
+  	<fieldset><legend>Connectivity</legend>
+	    <table>
+	      <tr><td>Network Support</td><td>{{phone.connectivity.cell}}</td></tr>
+	      <tr><td>WiFi</td><td>{{phone.connectivity.wifi}}</td></tr> 
+	      <tr><td>Bluetooth</td> <td>{{phone.connectivity.bluetooth}}</td></tr>
+	      <tr><td>Infrared</td><td>{{phone.connectivity.infrared | checkmark}}</td></tr>
+	      <tr><td>GPS</td> <td>{{phone.connectivity.gps | checkmark}}</td></tr>
+	    </table>
+    </fieldset>
+  </li>
+  <li>
+  	<fieldset><legend>Android</legend>
+    <table>
+	  <tr><td>OS Version</td>  <td>{{phone.android.os}}</td></tr>
+      <tr><td>UI</td>  <td>{{phone.android.ui}}</td></tr> 
+    </table>
+    </fieldset>
+  </li>
+  <li>
+  	<fieldset><legend>Size and Weight</legend>
+    <table>
+	  <tr ng-repeat="dim in phone.sizeAndWeight.dimensions"><td>Dimensions</td> <td>{{dim}}</td> </tr>
+      <tr><td>Weight</td> <td>{{phone.sizeAndWeight.weight}}</td></tr>
+    </table>
+    </fieldset>
+  </li>
+  <li>
+  	<fieldset><legend>Display</legend>
+    <table>
+	  <tr><td>Screen size</td> <td>{{phone.display.screenSize}}</td></tr>
+      <tr><td>Screen resolution</td> <td>{{phone.display.screenResolution}}</td></tr>
+      <tr><td>Touch screen</td>  <td>{{phone.display.touchScreen | checkmark}}</td></tr>
+    </table>
+    </fieldset>
+  </li>
+  <li>
+    <fieldset><legend>Hardware</legend>
+    <table>
+	  <tr><td>CPU</td>  <td>{{phone.hardware.cpu}}</td></tr>
+      <tr><td>USB</td>  <td>{{phone.hardware.usb}}</td></tr>
+      <tr><td>Audio / headphone jack</td> <td>{{phone.hardware.audioJack}}</td></tr>
+      <tr><td>FM Radio</td> <td>{{phone.hardware.fmRadio | checkmark}}</td></tr>
+      <tr><td>Accelerometer</td> <td>{{phone.hardware.accelerometer | checkmark}}</td></tr>
+    </table>
+    </fieldset>
+  </li>
+  <li>
+    <fieldset><legend>Camera</legend>
+    <table>
+	  <tr><td>Primary</td> <td>{{phone.camera.primary}}</td></tr>
+      <tr><td>Features</td>  <td>{{phone.camera.features.join(', ')}}</td></tr>
+    </table>
+    </fieldset>
+  </li>
+  <li>
+    <fieldset><legend>Additional Features</legend>
+    <p>{{phone.additionalFeatures}}</p>
+    </fieldset>
+  </li>
+</ul>

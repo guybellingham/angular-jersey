@@ -35,8 +35,12 @@ label {
     width: 180px;
 }
 input {
-	left: 200px;
-	position: absolute;
+	display: inline-block;  //for width to work!
+	/* left: 200px; */
+	/* position: absolute;  */
+}
+.error {
+	color: red;
 }
 table, th , td {
   border: 1px solid grey;

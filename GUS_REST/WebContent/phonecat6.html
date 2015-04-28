@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="phonecatApp"> 
+<head>
+  <meta charset="utf-8">
+  <title>PhoneList with Images and Links</title>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/phonecat.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.js"></script>
+</head>
+<body ng-controller="PhoneListCtrl">
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <!--Sidebar content-->
+
+      Search: <input ng-model="query">
+      Sort by:
+<select ng-model="orderProp">
+  <option value="name">Alphabetical</option>
+  <option value="age">Newest</option>
+</select>
+
+    </div>
+    <div class="col-md-10">
+      <!--Body content-->
+
+      <ul class="phones">
+          <li ng-repeat="phone in phones | filter:query | orderBy:orderProp" class="thumbnail">
+          	<!-- links that will in the future lead to phone detail pages -->
+          	<!-- ng-src directive prevents the browser from treating the Angular {{ expression }} markup literally, and initiating a request to an invalid URL -->
+            <a href="#/phones/{{phone.id}}" class="thumb"><img ng-src="{{phone.imageUrl}}"></a>
+            <a href="#/phones/{{phone.id}}">{{phone.name}}</a>
+            <p>{{phone.snippet}}</p>
+          </li>
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+<script src="js/phonecat5App.js"></script>
+</body>
+</html>

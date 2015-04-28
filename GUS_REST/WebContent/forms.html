@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Forms</title>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/styles.css">
+<style type="text/css">
+  .simple-form input.ng-invalid.ng-touched {
+    background-color: #FA787E;
+  }
+
+  .simple-form input.ng-valid.ng-touched {
+    background-color: #78FA89;
+  }
+</style>
+</head>
+
+<body id="body">
+<!-- ng-model directive adds the following classes to input fields as it processes their values
+ng-valid: the model is valid
+ng-invalid: the model is invalid
+ng-valid-[key]: for each valid key added by $setValidity
+ng-invalid-[key]: for each invalid key added by $setValidity
+ng-pristine: the control hasn't been interacted with yet
+ng-dirty: the control has been interacted with
+ng-touched: the control has been blurred
+ng-untouched: the control hasn't been blurred
+ng-pending: any $asyncValidators are unfulfilled
+ -->
+<div data-ng-app="formsExample" data-ng-controller="formsCtrl" class="container">
+	<!-- A form is an instance of FormController. The form instance can be published into the $scope using the "name" attribute -->
+	<!-- The novalidate attribute (HTML5) is used to disable browser's native form validation -->
+	<form name="exampleForm" novalidate class="simple-form"> 
+		<ul>
+		<!-- An input field that has the ngModel directive holds an instance of NgModelController. Such a control instance can be published as a property of the form instance using the "name" attribute  -->
+		<!-- Angular provides basic implementation for most common HTML5 input types: (text, number, url, email, date, radio, checkbox), as well as some directives for validation (required, pattern, minlength, maxlength, min, max) -->
+		<!-- The value of ngModel won't be set unless it passes validation for the input field. -->
+	    <li>Name: <input type="text" name="userName" ng-model="user.name" required="" minlength="8"/>
+	    	<div ng-show="exampleForm.$submitted || exampleForm.userName.$touched" class="error">
+		      <div ng-show="exampleForm.userName.$error.required">Please tell us your name?</div>
+		    </div>
+	    </li>
+	    <!-- ng-model-options= here overrides the default behavior where any change to the content will trigger a model update and form validation -->
+	    <li>E-mail: <input type="email" name="userEmail" ng-model="user.email" required="" ng-model-options="{ updateOn: 'blur' }"/>
+	    	<div ng-show="exampleForm.$submitted || exampleForm.userEmail.$touched" class="error">
+		      <span ng-show="exampleForm.userEmail.$error.required">Tell us your email?</span>
+		      <span ng-show="exampleForm.userEmail.$error.email">This is not a valid email.</span>
+		    </div>
+	    </li>
+	    <li>Gender: <input type="radio" ng-model="user.gender" value="male" />male <input type="radio" ng-model="user.gender" value="female" />female</li>
+	    <li><input type="checkbox" ng-model="user.agree" name="userAgree" required="" /> I agree to Terms &amp; Conditions
+	    	<div ng-show="exampleForm.$submitted || exampleForm.userAgree.$touched" class="error">
+      			<div ng-show="!user.agree">Please agree to Terms and Conditions.</div>
+    		</div>
+	    </li>
+	    <li><input type="button" ng-click="reset(exampleForm)" value="Reset" />  <input type="submit" ng-click="update(user)" value="Save" /></li>
+	    </ul>
+	</form>
+  <pre>form = {{user | json}}</pre>
+  <pre>master = {{master | json}}</pre>
+</div>
+
+<script src="js/formsController.js"></script>
+</body>
+</html>
